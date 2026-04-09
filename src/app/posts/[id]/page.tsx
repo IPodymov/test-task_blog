@@ -73,8 +73,8 @@ export default async function PostPage({
           exposes us to different cultures, and creates memories that last a
           lifetime. However, traveling can also be stressful and overwhelming,
           especially if you don&apos;t plan and prepare adequately. In this blog
-          article, we&apos;ll explore tips and tricks for a memorable journey and how
-          to make the most of your travels.
+          article, we&apos;ll explore tips and tricks for a memorable journey
+          and how to make the most of your travels.
         </p>
 
         <h2 className={styles.heading2}>Research Your Destination</h2>
@@ -87,8 +87,9 @@ export default async function PostPage({
         </p>
 
         <blockquote className={styles.quote}>
-          &quot; Traveling can expose you to new environments and potential health
-          risks, so it&apos;s crucial to take precautions to stay safe and healthy. &quot;
+          &quot; Traveling can expose you to new environments and potential
+          health risks, so it&apos;s crucial to take precautions to stay safe
+          and healthy. &quot;
         </blockquote>
 
         <div className={styles.inlineImageWrapper}>

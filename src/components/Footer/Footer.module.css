@@ -1,0 +1,131 @@
+.footer {
+  background: var(--surface);
+  padding: 64px 0 0;
+  margin-top: 64px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 2fr;
+  gap: 32px;
+  margin-bottom: 64px;
+}
+
+.about h3, .links h3, .newsletter h3 {
+  font-size: 18px;
+  color: var(--foreground);
+  margin-bottom: 24px;
+}
+
+.about p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  font-size: 16px;
+}
+
+.contact {
+  font-size: 16px !important;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.links a {
+  color: var(--text-secondary);
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+.links a:hover {
+  color: var(--primary);
+}
+
+.newsletterBox {
+  background: #FFF;
+  padding: 32px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.newsletterBox p {
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form input {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  outline: none;
+}
+
+.form button {
+  background: #4B6BFB;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  color: var(--foreground);
+}
+
+.logomark {
+  background: var(--foreground);
+  color: var(--background);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.copyright {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-left: 24px;
+}
+
+.legal {
+  display: flex;
+  gap: 24px;
+}
+
+.legal a {
+  color: var(--text-secondary);
+  font-size: 14px;
+}

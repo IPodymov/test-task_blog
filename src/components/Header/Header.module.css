@@ -1,0 +1,136 @@
+.header {
+  width: 100%;
+  padding: 24px 0;
+  background-color: var(--background);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 24px;
+  color: var(--foreground);
+}
+
+.logomark {
+  background: var(--foreground);
+  color: var(--background);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.logotext {
+  font-weight: normal;
+}
+
+.logotext strong {
+  font-weight: 800;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+}
+
+.nav a {
+  color: var(--text-secondary);
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav a:hover {
+  color: var(--primary);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search input {
+  background: var(--surface);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  padding-right: 40px;
+  font-size: 14px;
+  color: var(--foreground);
+  outline: none;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 12px;
+  color: var(--text-tertiary);
+}
+
+.themeToggle {
+  background: var(--surface);
+  border: none;
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+}
+
+.toggleTrack {
+  background: white;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.sun {
+  color: #F8B810;
+}
+.darkTrack {
+  transform: translateX(18px);
+  background: var(--foreground);
+}
+
+.moon {
+  color: var(--background);
+  animation: fadeIn 0.3s ease;
+}
+
+.sun {
+  color: #F8B810;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+  to { opacity: 1; transform: rotate(0) scale(1); }
+}

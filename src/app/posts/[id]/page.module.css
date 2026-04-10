@@ -176,27 +176,36 @@
 
 @media (max-width: 768px) {
   .title {
-    font-size: 28px;
+    font-size: 24px;
+    margin-bottom: 16px;
   }
   .bannerWrapper {
-    height: 300px;
+    height: 250px;
+    border-radius: 8px;
+    margin-bottom: 24px;
   }
   .inlineImageWrapper {
-    height: 250px;
+    height: 200px;
+    border-radius: 8px;
+  }
+  .content {
+    font-size: 16px;
+    margin-bottom: 40px;
   }
   .authorGroup {
-    flex-direction: column;
-    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
   }
   .quote {
-    font-size: 18px;
-    padding: 24px;
+    font-size: 16px;
+    padding: 16px;
     margin: 24px 0;
   }
   .navigation {
     flex-direction: column;
-    gap: 24px;
-    align-items: stretch;
+    gap: 16px;
+    align-items: center;
     text-align: center;
   }
 }

@@ -140,7 +140,8 @@
   .container {
     flex-direction: column;
     gap: 16px;
-    align-items: stretch;
+    align-items: center;
+    padding: 16px;
   }
   
   .logo a {
@@ -149,18 +150,24 @@
 
   .nav {
     justify-content: center;
-    order: 3;
     flex-wrap: wrap;
     gap: 16px;
-    margin-top: 8px;
+    order: 3; /* Ссылки меню уйдут вниз */
   }
 
   .actions {
-    justify-content: center;
-    width: 100%;
+    justify-content: space-between;
+    width: 100%; /* Поиск и кнопка темы раздвинутся */
+    gap: 16px;
+  }
+
+  .search {
+    flex: 1; /* Поиск займет все доступное место до кнопки темы */
+    width: auto;
   }
 
   .search input {
     width: 100%;
+    box-sizing: border-box; /* Чтобы input не вылазил за пределы flex: 1 */
   }
 }

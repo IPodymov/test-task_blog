@@ -176,27 +176,6 @@
   color: var(--foreground);
 }
 
-@media (max-width: 1024px) {
-  .postList {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .postList {
-    grid-template-columns: 1fr;
-  }
-  .heroCard {
-    bottom: 0;
-    left: 0;
-    max-width: 100%;
-    border-radius: 0;
-  }
-  .heroImageWrapper {
-    height: 400px;
-  }
-}
-
 /* Адаптивная верстка (Mobile & Tablet) */
 @media (max-width: 1024px) {
   .postList {
@@ -218,8 +197,9 @@
     position: relative;
     bottom: auto;
     left: auto;
-    max-width: 100%;
-    margin: -40px 16px 0 16px;
+    max-width: none;
+    width: calc(100% - 32px); /* Заполняет почти весь экран с отступами по 16px */
+    margin: -40px auto 0 auto; /* Центруется и "наезжает" на картинку */
     padding: 24px;
     border-radius: 12px;
   }
@@ -230,11 +210,7 @@
   }
 
   .authorGroup {
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Чтобы длинные имена и даты не ломали верстку карточки Hero */
     gap: 12px;
-  }
-
-  .adBanner {
-    margin: 40px auto;
   }
 }

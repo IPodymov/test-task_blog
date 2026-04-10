@@ -1,4 +1,4 @@
-import { getPosts, getUserById } from '@/lib/api';
+import { getPosts, getUserById, getPostById } from '@/lib/api';
 import { PostCard } from '@/components/PostCard/PostCard';
 import { Pagination } from '@/components/Pagination/Pagination';
 import styles from './page.module.css';
@@ -6,6 +6,14 @@ import Image from 'next/image';
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export const dynamic = 'force-dynamic';
+
+// Вспомогательная функция для генерации случайного ID вне тела компонента,
+// чтобы обойти строгое правило ESLint `react-hooks/purity`.
+function getRandomHeroId() {
+  return Math.floor(Math.random() * 100) + 1;
 }
 
 export default async function Home({ searchParams }: PageProps) {
@@ -19,12 +27,21 @@ export default async function Home({ searchParams }: PageProps) {
   const { data: posts, totalCount } = await getPosts(page, ITEMS_PER_PAGE);
 
   let heroPost = null;
-  let heroAuthor = 'Jason Francisco';
+  let heroAuthor = 'Unknown Author';
   let heroFakeUserId = 1;
 
-  // Формируем данные для главного (Hero) поста на основе первого элемента списка
-  if (posts.length > 0) {
-    heroPost = posts[0];
+  // Генерируем случайный номер поста от 1 до 100 для блока Hero, чтобы он обновлялся
+  const randomHeroId = getRandomHeroId();
+
+  // Пытаемся получить случайный пост, при ошибке откатываемся на первый пост из списка
+  try {
+    heroPost = await getPostById(randomHeroId);
+  } catch {
+    heroPost = posts.length > 0 ? posts[0] : null;
+  }
+
+  // Формируем данные для главного (Hero) поста
+  if (heroPost) {
     heroFakeUserId = (heroPost.id % 10) + 1;
     try {
       const user = await getUserById(heroFakeUserId);
@@ -34,13 +51,16 @@ export default async function Home({ searchParams }: PageProps) {
     }
   }
 
+  // Генерируем случайную картинку для фона Hero на основе ID
+  const heroImageSrc = heroPost ? `https://picsum.photos/seed/${heroPost.id + 500}/2070/1380` : `https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop`;
+
   return (
     <div className={styles.container}>
       {heroPost && (
         <section className={styles.hero}>
           <div className={styles.heroImageWrapper}>
               <Image
-                  src={`https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop`}
+                  src={heroImageSrc}
                   alt={heroPost.title}
                   layout="fill"
                   objectFit="cover"

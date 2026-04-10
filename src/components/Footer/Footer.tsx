@@ -24,8 +24,6 @@ export function Footer() {
             <Link href="/">Home</Link>
             <Link href="/contact">Contact</Link>
           </div>
-          <div className={styles.links}>
-          </div>
           <div className={styles.newsletter}>
             <div className={styles.newsletterBox}>
               <h3>Weekly Newsletter</h3>
@@ -44,7 +42,7 @@ export function Footer() {
               Meta<strong>Blog</strong>
             </span>
             <span className={styles.copyright}>
-              © JS Template 2023. All Rights Reserved.
+              © All Rights Reserved 2026
             </span>
           </div>
           <div className={styles.legal}>

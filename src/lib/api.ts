@@ -4,7 +4,7 @@ const API_BASE_URL = 'https://jsonplaceholder.typicode.com';
 
 export async function getPosts(page: number = 1, limit: number = 10): Promise<PaginationResult<Post>> {
   const response = await fetch(`${API_BASE_URL}/posts?_page=${page}&_limit=${limit}`, {
-    next: { revalidate: 3600 }, // Optional caching
+    next: { revalidate: 3600 }, // Опциональное кэширование
   });
 
   if (!response.ok) {
@@ -30,5 +30,22 @@ export async function getPostById(id: number | string): Promise<Post> {
     throw new Error('Failed to fetch post');
   }
 
+  return response.json();
+}
+
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+export async function getUserById(id: number | string): Promise<User> {
+  const response = await fetch(`${API_BASE_URL}/users/${id}`);
+  if (!response.ok) {
+    if (response.status === 404) {
+      throw new Error('User not found');
+    }
+    throw new Error('Failed to fetch user');
+  }
   return response.json();
 }

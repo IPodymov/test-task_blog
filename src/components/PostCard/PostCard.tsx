@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Post } from "@/types/post";
+import { getUserById } from "@/lib/api";
 import styles from "./PostCard.module.css";
 import Image from "next/image";
 
@@ -8,17 +9,38 @@ interface PostCardProps {
   page?: number;
 }
 
-export function PostCard({ post, page }: PostCardProps) {
-  // Generate random IDs for visual realism since DummyJSON isn't strictly giving user image dates in standard API
-  const randomImageId = (post.id % 20) + 1;
-  const authorName = "Jason Francisco"; 
-  const authorAvatar = `https://i.pravatar.cc/150?u=${post.userId || post.id}`;
-  const dateStr = "August 20, 2022";
+const months = [
+  "January", "February", "March", "April", "May", "June", 
+  "July", "August", "September", "October", "November", "December"
+];
+
+function generateDate(id: number) {
+  const day = (id % 28) + 1;
+  const month = months[id % 12];
+  const year = 2020 + (id % 4);
+  return `${month} ${day}, ${year}`;
+}
+
+export async function PostCard({ post, page }: PostCardProps) {
+  let authorName = "Unknown Author";
+  
+  // Генерируем ID автора (от 1 до 10) на основе ID поста 
+  // для визуального разнообразия карточек
+  const fakeUserId = (post.id % 10) + 1;
+
+  try {
+    const user = await getUserById(fakeUserId);
+    authorName = user.name;
+  } catch (e) {
+    console.error("User not found");
+  }
+
+  const authorAvatar = `https://i.pravatar.cc/150?u=${fakeUserId}`;
+  const dateStr = generateDate(post.id);
 
   return (
     <article className={styles.card}>
       <Link href={`/posts/${post.id}${page ? `?page=${page}` : ""}`} className={styles.imageLink}>
-        {/* Placeholder image from Unsplash */}
         <div className={styles.imageWrapper}>
           <Image 
             src={`https://picsum.photos/seed/${post.id + 100}/600/400`}

@@ -1,4 +1,4 @@
-import { getPostById } from "@/lib/api";
+import { getPostById, getUserById } from "@/lib/api";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -10,16 +10,30 @@ interface PostPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
+const months = [
+  "January", "February", "March", "April", "May", "June", 
+  "July", "August", "September", "October", "November", "December"
+];
+
+function generateDate(id: number) {
+  const day = (id % 28) + 1;
+  const month = months[id % 12];
+  const year = 2020 + (id % 4);
+  return `${month} ${day}, ${year}`;
+}
+
 export default async function PostPage({
   params,
   searchParams,
 }: PostPageProps) {
+  // Получаем параметры роута и поиска
   const resolvedParams = await params;
   const resolvedSearchParams = await searchParams;
 
   const idStr = resolvedParams.id;
   const pageStr = resolvedSearchParams.page;
 
+  // Загружаем данные поста
   let post;
   try {
     post = await getPostById(idStr);
@@ -27,10 +41,22 @@ export default async function PostPage({
     notFound();
   }
 
+  let authorName = "Unknown Author";
+  
+  // Генерируем ID автора на основе ID поста для уникальности
+  const fakeUserId = (post.id % 10) + 1;
+
+  try {
+    const user = await getUserById(fakeUserId);
+    authorName = user.name;
+  } catch {
+    // В случае ошибки оставляем дефолтное имя автора
+  }
+
+  // Формируем ссылку назад с учетом текущей страницы пагинации
   const backLink = pageStr ? `/?page=${pageStr}` : "/";
-  const authorName = "Tracey Wilson";
-  const dateStr = "August 20, 2022";
-  const avatarUrl = `https://i.pravatar.cc/150?u=${post.userId || post.id}`;
+  const dateStr = generateDate(post.id);
+  const avatarUrl = `https://i.pravatar.cc/150?u=${fakeUserId}`;
   const bannerImage = `https://picsum.photos/seed/${post.id + 200}/1200/600`;
   const inlineImage = `https://picsum.photos/seed/${post.id + 300}/800/400`;
 

@@ -7,11 +7,13 @@ import { useEffect, useState } from 'react';
 import styles from './Header.module.css';
 
 export function Header() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    // Отложенный вызов во избежание ошибки React Compiler на синхронный setState внутри effect
+    const timeout = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(timeout);
   }, []);
 
   const isDark = mounted && resolvedTheme === 'dark';
@@ -28,10 +30,8 @@ export function Header() {
         
         <nav className={styles.nav}>
           <Link href="/">Home</Link>
-          <Link href="/">Blog</Link>
           <Link href="/posts/random" prefetch={false}>Single Post</Link>
-          <Link href="/">Pages</Link>
-          <Link href="/">Contact</Link>
+          <Link href="/contact">Contact</Link>
         </nav>
 
         <div className={styles.actions}>

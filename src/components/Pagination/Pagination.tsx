@@ -18,7 +18,7 @@ export function Pagination({
     return null;
   }
 
-  // Create an array of page numbers to render
+  // Массив номеров страниц для отображения
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (

@@ -51,11 +51,15 @@
 }
 
 .newsletterBox {
-  background: #FFF;
+  background: var(--background);
   padding: 32px;
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+:root[data-theme='dark'] .newsletterBox {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .newsletterBox p {
@@ -74,6 +78,8 @@
   border: 1px solid var(--border);
   border-radius: 6px;
   outline: none;
+  background: var(--surface);
+  color: var(--foreground);
 }
 
 .form button {

@@ -8,8 +8,8 @@ export function RandomPostButton() {
 
   const handleRandomClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    // JSONPlaceholder API guarantees exactly 100 valid posts. 
-    // Constraining to 1-100 prevents 404 errors.
+    // JSONPlaceholder API гарантированно содержит 100 постов. 
+    // Ограничение от 1 до 100 позволяет избежать 404 ошибок.
     const randomId = Math.floor(Math.random() * 100) + 1;
     router.push(`/posts/${randomId}`, { scroll: true });
     window.scrollTo({ top: 0, behavior: 'smooth' });

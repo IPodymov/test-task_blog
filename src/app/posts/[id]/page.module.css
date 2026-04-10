@@ -184,4 +184,19 @@
   .inlineImageWrapper {
     height: 250px;
   }
+  .authorGroup {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .quote {
+    font-size: 18px;
+    padding: 24px;
+    margin: 24px 0;
+  }
+  .navigation {
+    flex-direction: column;
+    gap: 24px;
+    align-items: stretch;
+    text-align: center;
+  }
 }

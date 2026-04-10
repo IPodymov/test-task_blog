@@ -58,8 +58,9 @@ export async function PostCard({ post, page }: PostCardProps) {
           <Image
             src={`https://picsum.photos/seed/${post.id + 100}/600/400`}
             alt={post.title}
-            layout="fill"
-            objectFit="cover"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            style={{ objectFit: 'cover' }}
             className={styles.image}
           />
         </div>

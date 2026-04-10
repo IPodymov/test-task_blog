@@ -3,6 +3,7 @@ import { PostCard } from '@/components/PostCard/PostCard';
 import { Pagination } from '@/components/Pagination/Pagination';
 import styles from './page.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -58,19 +59,22 @@ export default async function Home({ searchParams }: PageProps) {
     <div className={styles.container}>
       {heroPost && (
         <section className={styles.hero}>
-          <div className={styles.heroImageWrapper}>
+          <Link href={`/posts/${heroPost.id}`} className={styles.heroImageWrapper}>
               <Image
                   src={heroImageSrc}
                   alt={heroPost.title}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  sizes="100vw"
+                  style={{ objectFit: 'cover' }}
                   className={styles.heroImage}
                   priority
               />
-          </div>
+          </Link>
           <div className={styles.heroCard}>
               <span className={styles.category}>Technology</span>
-              <h2 className={styles.heroTitle}>{heroPost.title}</h2>
+              <h2 className={styles.heroTitle}>
+                <Link href={`/posts/${heroPost.id}`}>{heroPost.title}</Link>
+              </h2>
               <div className={styles.authorGroup}>
                   <div className={styles.author}>
                       <Image src={`https://i.pravatar.cc/150?u=${heroFakeUserId}`} alt={heroAuthor} width={36} height={36} className={styles.avatar} />
@@ -82,13 +86,13 @@ export default async function Home({ searchParams }: PageProps) {
         </section>
       )}
 
-      <div className={styles.adBanner}>
+      {/* <div className={styles.adBanner}>
         <div className={styles.adContent}>
             <span className={styles.adLabel}>Advertisement</span>
             <span className={styles.adTitle}>You can place ads</span>
             <span className={styles.adSize}>750x100</span>
         </div>
-      </div>
+      </div> */}
 
       <main className={styles.main}>
         <h3 className={styles.sectionTitle}>Latest Post</h3>
@@ -108,13 +112,13 @@ export default async function Home({ searchParams }: PageProps) {
         />
       </main>
 
-      <div className={styles.adBanner}>
+      {/* <div className={styles.adBanner}>
         <div className={styles.adContent}>
             <span className={styles.adLabel}>Advertisement</span>
             <span className={styles.adTitle}>You can place ads</span>
             <span className={styles.adSize}>750x100</span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -85,8 +85,9 @@ export default async function PostPage({
         <Image
           src={bannerImage}
           alt={post.title}
-          layout="fill"
-          objectFit="cover"
+          fill
+          sizes="100vw"
+          style={{ objectFit: 'cover' }}
           className={styles.bannerImage}
           priority
         />
@@ -122,19 +123,20 @@ export default async function PostPage({
           <Image
             src={inlineImage}
             alt="Inline content image"
-            layout="fill"
-            objectFit="cover"
+            fill
+            sizes="(max-width: 800px) 100vw, 800px"
+            style={{ objectFit: 'cover' }}
             className={styles.inlineImage}
           />
         </div>
 
-        <div className={styles.adBanner}>
+        {/* <div className={styles.adBanner}>
           <div className={styles.adContent}>
             <span className={styles.adLabel}>Advertisement</span>
             <span className={styles.adTitle}>You can place ads</span>
             <span className={styles.adSize}>750x100</span>
           </div>
-        </div>
+        </div> */}
 
         <h2 className={styles.heading2}>Pack Lightly and Smartly</h2>
         <p className={styles.paragraph}>
